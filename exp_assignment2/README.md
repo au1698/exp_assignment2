@@ -5,8 +5,7 @@ The ball is defined as a robot with no collision element and zero gravity. This 
 The dog is a wheeled robot with a fixed joint that represents the neck and an actuated joint that represents the head. On top of it is placed a camera. 
 At the beginning, the robot is in a sleep state. Everytime the robot is in the sleep state, it reaches the home position and after some time switches to normal state.   
 Everytime the robot is in the normal state, it moves randomly and reaches randomly positions. It searches the green ball in the arena and when it sees the the ball switches to "play" state. 
-
-When the state is 'play' the robot reaches person's position, after that it waits for a pointing gesture, if it receives the target position, it reaches this point. After some time, the robot switches to the 'normal' state. 
+When the state is 'play' the robot reaches follows the ball. After some time, the robot switches randomly to the 'normal' or "sleep" state.  
 
 
 ## ROS Architecture of the System
@@ -15,10 +14,10 @@ In the folder “config” there is the descriptionof the parameters of the PID 
 
 # Ros Messages 
 
-Twist: expresses robot's or ball's velocity in free space broken into its linear and angular parts.
-PoseStamped: Robot's pose with reference coordinate frame and timestamp. It expresses the result in the Action. 
-CompressedImage: image acquired from the camera. 
-Pose: robot's or ball's pose. It's refereed to the goal in the Action. 
+- Twist: expresses robot's or ball's velocity in free space broken into its linear and angular parts.
+-  PoseStamped: Robot's pose with reference coordinate frame and timestamp. It expresses the result in the      Action. 
+- CompressedImage: image acquired from the camera. 
+- Pose: robot's or ball's pose. It's refereed to the goal in the Action. 
 
 # Rqt_graph 
 <p align="center"> 
