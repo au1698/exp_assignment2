@@ -4,7 +4,7 @@ The human can interact with the robot launching the ball while the robot can hav
 The ball is defined as a robot with no collision element and zero gravity. This because can be present on the arena or not, depends on human's choice. 
 The dog is a wheeled robot with a fixed joint that represents the neck and an actuated joint that represents the head. On top of it is placed a camera. 
 At the beginning, the robot is in a sleep state. Everytime the robot is in the sleep state, it reaches the home position and after some time switches to normal state.   
-Everytime the robot is in the normal state, it moves randomly and reaches randomly positions, then it listens to user's comands. If user says "go to sleep" the robot enters in "sleep" mode otherwise it continues to search the green ball in the arena. When the robot sees the the ball switches to "play" state. 
+Everytime the robot is in the normal state, it moves randomly and reaches randomly positions. It searches the green ball in the arena and when it sees the the ball switches to "play" state. 
 
 When the state is 'play' the robot reaches person's position, after that it waits for a pointing gesture, if it receives the target position, it reaches this point. After some time, the robot switches to the 'normal' state. 
 
@@ -36,15 +36,15 @@ This node is a finite state machine composed of three states: PLAY, SLEEP, NORMA
 SLEEP: the state implements the function "Go_home()" in which is implemented and Action Client that let the robot move to a definite destination "home" which is at point (2,0,0). 
 After that, the state machine whitches into "normal" state.   
 
-NORMAL: at the beginning the state cheks inf the user say something, executing the function "user_action()". If the function return "go_to_sleep", the state changes into "sleep" otherwise remains in the normal state and implements the function "Move_Normal()". 
+NORMAL: when the robot is in the normal state implements the function "Move_Normal()". 
 It implements an Action Client that let the robot move to random destinations. 
-When the robot is slowly reaching the goal position moves it's head in order to detect the ball that can be over or below the floor. Infact, it subscribes to the topic "robot/camera1/image_raw/compressed" in order to recheive a "CompressedImage" from the camera. The subscriber has as callback function: "callback_camera" that converts the RosImage acquired into a CV2 formatin order to compute image processing with OpenCv functions. 
+When the robot is slowly reaching the goal position moves it's head in order to detect the ball that can be over or below the floor. Infact, it subscribes to the topic "/robot/camera1/image_raw/compressed" in order to recheive a "CompressedImage" from the camera. 
+The subscriber has as callback function: "callback_camera" that converts the RosImage acquired into a CV2 format in order to compute image processing with OpenCv functions. 
 The OpenCv lybrary is used to blur the acquired image in order to reduce the noise (at high frequency), to convert the image color's namespace from RGB into HSV, to apply a mask and to detect properties of the object such as radius, center and colors. 
-This function when the robot is close to the green ball draws a circle and centroid on the frame, then update the list of tracked points. The robot modifies its angular and linear velocity and in order to allign itself to the ball having the ball always at the center of the image frame.
+This function when the robot is close to the green ball draws a circle and a centroid on the frame, then it updates the list of tracked points. The robot modifies its angular and linear velocity and in order to allign itself to the ball mantaining the ball always at the center of the image frame.
 When it sees the green ball, it switches to the "play" state. 
 
-
-PLAY: the state publishes on the topic '/target_point' a random position which represents person's position. The state takes time to reach person's position and wait for a pointing gesture. It subscribes to the topic '/vocal_comand', if it receives user's vocal comands it return and error because in this wait loop expects a pointing gesture. If it doesn't receive a vocal comand it subscribes to the topic '/pointed_comand' , it publishes on the topic '/target_point' and exit from the loop. 
+PLAY: when the robot is in the "play" state, it keeps the track of the ball and stops when the ball stops.    
 
 ## go_to_point_robot
 This node is robot's controller that implements an Action Server. It subscibes to the topic /odom and publishes on the topic 'cmd_vel'robot's twist and on the '/gazebo/set_link_state' in order to move robot's links. Planar move Ros plug in is used to move the robot or the ball  on the environment.  
@@ -82,15 +82,14 @@ To run the system:
 
 
 ## Working hypoteses
-The gesture commands present the same "priority" since they occur in random order.
-The home position is fixed (2,0,0). 
-Person's position is generated randomly in 'PLAY' state. 
+The home position is fixed (2,0,0).  
 When the robot is in the 'SLEEP' state, it only reaches the home position and after some time goes to the 'NORMAL' state. 
-When the robot is in the 'NORMAL' state, it cheks the user's speech simulation, if the user says "go_to_sleep" the robot returns in 'SLEEP' state otherwise it continue to stay in the 'NORMAL' state.
+The ball has no gravity and collision elements. 
 
 ## Possible improvements
 - The robot moves very slowly.
 - Improve robot's URDF.   
+- Robot moves its headk when the ball stops. 
 
 ## Author: 
 
