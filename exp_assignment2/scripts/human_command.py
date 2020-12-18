@@ -41,7 +41,7 @@ def  Simulator ():
              goal = exp_assignment2.msg.PlanningGoal()
              goal.target_pose.pose.position.x = np.random.randint(0, 8)
              goal.target_pose.pose.position.y = np.random.randint(0, 8)
-             goal.target_pose.pose.position.z = random.randrange(-3, 3, 2) 
+             goal.target_pose.pose.position.z = random.randrange(-1, 6, 2) 
 
              print("ball position: ", goal.target_pose.pose.position.x, goal.target_pose.pose.position.y ,goal.target_pose.pose.position.z) 
      
@@ -62,7 +62,7 @@ def main():
       while True:
            
            Simulator ()
-           time.sleep(2) 
+           time.sleep(20) # wait some time 
            
 
 if __name__ == '__main__':
