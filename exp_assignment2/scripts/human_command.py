@@ -19,7 +19,7 @@ from exp_assignment2.msg import PlanningAction, PlanningGoal
 
 # Human_command node 
 
-global command   # I added this 
+global command   
 
 def  Simulator (): 
 
@@ -48,7 +48,6 @@ def  Simulator ():
              # Sends the goal to the action server.
              client.send_goal(goal)
              
-             #command = rospy.get_param('/robot/human_command')
 
              # Waits for the server to finish performing the action.
              client.wait_for_result()

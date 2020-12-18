@@ -208,8 +208,8 @@ def callback_camera(ros_data):
      np_arr = np.fromstring(ros_data.data, np.uint8)
      image_np = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)  # OpenCV >= 3.0:
 
-     orangeLower = (50, 50, 20)   # to detect green ball ->  greenLower = (50, 50, 20)
-     orangeUpper = (70, 255, 255) # " - > greenUpper = (70, 255, 255) 
+     orangeLower = (50, 50, 20)   # range to detect green ball 
+     orangeUpper = (70, 255, 255) 
 
      blurred = cv2.GaussianBlur(image_np, (11, 11), 0)
      hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
@@ -223,7 +223,7 @@ def callback_camera(ros_data):
      center = None
      # only proceed if at least one contour was found
      if len(cnts) > 0:
-         see_ball = True  # robot can see the ball
+         see_ball = True               # robot can see the ball
          # find the largest contour in the mask, then use
          # it to compute the minimum enclosing circle and
          # centroid
@@ -234,7 +234,6 @@ def callback_camera(ros_data):
 
          # only proceed if the radius meets a minimum size
          if radius > 10:
-             #see_ball = True  # robot can see the ball   
 
              # draw the circle and centroid on the frame,
              # then update the list of tracked points
@@ -277,7 +276,6 @@ class Sleep(smach.State):
         
         rospy.loginfo('Executing state SLEEP')
         userdata.sleep_counter_out = userdata.sleep_counter_in + 1  
-        # ActionClient that moves the robot 
         
         rospy.set_param('/robot/human_command', True)
 
