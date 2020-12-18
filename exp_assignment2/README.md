@@ -20,11 +20,9 @@ PoseStamped: Robot's pose with reference coordinate frame and timestamp. It expr
 CompressedImage: image acquired from the camera. 
 Pose: robot's or ball's pose. It's refereed to the goal in the Action. 
 
-The rqt_graph is shown below.
-
 # Rqt_graph 
 <p align="center"> 
-<img src=https://github.com/au1698/Experimental-Lab-Assignments-Robotics/blob/main/pet_robot/Images/rqt_graph_pet_robot.png raw=true">
+<img src=https://github.com/au1698/exp_assignment2/blob/main/exp_assignment2/Images/arena.png raw=true">
 </p>
 
 ## human_command
@@ -34,10 +32,6 @@ Ball's position is chosen randomly and can be negative along the z - axis. In th
 
 ## state_machine
 This node is a finite state machine composed of three states: PLAY, SLEEP, NORMAL.
-
-<p align="center"> 
-<img src=https://github.com/au1698/Experimental-Lab-Assignments-Robotics/blob/main/pet_robot/Images/pet_state_machine.jpeg raw=true">
-</p>
 
 SLEEP: the state implements the function "Go_home()" in which is implemented and Action Client that let the robot move to a definite destination "home" which is at point (2,0,0). 
 After that, the state machine whitches into "normal" state.   
