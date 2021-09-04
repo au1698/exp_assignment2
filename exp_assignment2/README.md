@@ -25,7 +25,7 @@ In the folder “config” there is the descriptionof the parameters of the PID 
 </p>
 
 ## human_command
-This node until is active simulates user's launch of the green ball in the arena. 
+This node until simulates user's launch of the green ball in the arena. 
 The green ball action is planned by the Action: Planning.action. 
 Ball's position is chosen randomly and can be negative along the z - axis. In this way, the ball can disapper.
 
