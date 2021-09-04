@@ -39,7 +39,7 @@ NORMAL: when the robot is in the normal state implements the function "Move_Norm
 It implements an Action Client that let the robot move to random destinations. 
 When the robot is slowly reaching the goal position moves it's head in order to detect the ball that can be over or below the floor. Infact, it subscribes to the topic "/robot/camera1/image_raw/compressed" in order to recheive a "CompressedImage" from the camera. 
 The subscriber has as callback function: "callback_camera" that converts the RosImage acquired into a CV2 format in order to compute image processing with OpenCv functions. 
-The OpenCv lybrary is used to blur the acquired image in order to reduce the noise (at high frequency), to convert the image color's namespace from RGB into HSV, to apply a mask and to detect properties of the object such as radius, center and colors. 
+The OpenCv library is used to blur the acquired image in order to reduce the noise (at high frequency), to convert the image color's namespace from RGB into HSV, to apply a mask and to detect properties of the object such as radius, center and colors. 
 This function when the robot is close to the green ball draws a circle and a centroid on the frame, then it updates the list of tracked points. The robot modifies its angular and linear velocity and in order to allign itself to the ball mantaining the ball always at the center of the image frame.
 When it sees the green ball, it switches to the "play" state. 
 
