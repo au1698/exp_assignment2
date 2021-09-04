@@ -1,6 +1,6 @@
 # Behavioral Architecture
 The scenario describes a pet robot and a green ball in the arena.  
-The human can interact with the robot launching the ball while the robot can have three beaviors: sleep, play, normal.
+The human can interact with the robot launching the ball while the robot can have three behaviors: sleep, play, normal.
 The ball is defined as a robot with no collision element and zero gravity. This because can be present on the arena or not, depends on human's choice. 
 The dog is a wheeled robot with a fixed joint that represents the neck and an actuated joint that represents the head. On top of it is placed a camera. 
 At the beginning, the robot is in a sleep state. Everytime the robot is in the sleep state, it reaches the home position and after some time switches to normal state.   
