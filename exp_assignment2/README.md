@@ -88,7 +88,7 @@ The ball has no gravity and collision elements.
 ## Possible improvements
 - The robot moves very slowly.
 - Improve robot's URDF.   
-- Robot moves its headk when the ball stops. 
+- Robot moves its head when the ball stops. 
 
 ## Author: 
 
