@@ -19,7 +19,7 @@ In the folder “config” there is the descriptionof the parameters of the PID 
 - CompressedImage: image acquired from the camera. 
 - Pose: robot's or ball's pose. It's refereed to the goal in the Action. 
 
-# Rqt_graph 
+
 <p align="center"> 
 <img src=https://github.com/au1698/exp_assignment2/blob/main/exp_assignment2/Images/arena.png raw=true">
 </p>
